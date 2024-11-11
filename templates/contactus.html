@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccancies | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+
+
+</head>
+<body dir="rtl" style="background-color: #F9F9FB;">
+
+
+
+
+    <div class="adviecs">
+        <div class="ad-container">
+            <div class="taking-advices">
+
+                <a class="logo" style="text-align: center;" href="/">
+                    <h1>وظـــيفة | Wazzifa</h1>
+                </a>
+              
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <input type="text" placeholder="الإسم كاملا" name="name"><br>
+                    <input type="email" name="email" placeholder="someone@gmail.com"><br>
+                    <input type="number" name="number" placeholder="رقم تواصل واتس اب"><br>
+                    <textarea placeholder="إكتب رسالتك هنا.." name="message"></textarea><br>
+                    <input type="submit" value="إرسـال" class="submitt">
+                </form>
+
+                {% for m in messages %}
+                <h3 style="background-color: lightgray; padding:8px">{{m}}</h3>
+                {% if m %}
+                <h4><a href="{% url 'home' %}">العـودة إلى الصفحـة الرئيسية</a></h4>
+                {% endif %}
+                {% endfor%}
+               
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--footer -->
+
+        <!--footer start-->
+        <div class="footer">
+            <!--<div class="container">-->
+                <div class="taking-footer">
+                   
+                    <div class="taking-links">
+                        <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                        <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                        <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                        <a href="{% url 'home' %}"> الرئيـسية</a>
+                    </div>
+                    <div class="log">
+                      <h1>وظـــيفة | Wazzifa</h1>
+                      <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                      <br><small>Developed by Ahmd Babiker</small>
+                  </div>
+                </div>
+          
+        </div>
+    <!--footer end-->
+    <!--footer -->
+
+      
+
+
+  
+
+
+
+
+    <!--js -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- js-->
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccancies | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+  
+</head>
+<body dir="rtl" style="background-color: #F9F9FB;">
+
+    
+    <!--navbar section-->
+
+    <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="{% url 'home' %}">
+                <h1>وظـــيفة | Wazzifa</h1>
+                <h4 style="color: rgb(148, 148, 148);">معرض الخدمـات</h4>
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    <a href="{% url 'home' %}">الرئيـسية</a>
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li><a class="nav-link" href="{% url 'services' %}"> خدمـات</a></li>
+                <li><a class="nav-link" href="#">إيميلات</a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       
+
+      <!-- introduction-->
+        <div class="intro">
+          <div class="taking-intro">
+            <div class="intro-data">
+             
+                <h2>مرحبـاً بك في خدمـات</h2>
+
+                 <p>خدمات هي خدمه لك وللغير سواء كنت باحثاً عن خدمه لتنفيذها بمقابل إتفاق بينك وبين صاحب الخدمه<br> او 
+               اذا كنت تحتاج إلى خدمة يمكنك نشرها بخطوات بسيطة , خدمات إلكترونية أو خدمات مهنية</p>
+               <small>قـم بالنشر الآن أو إبحث عن خدمه قم بتنفيذها</small>
+            </div>
+          </div>
+        </div>
+
+
+      <!--introduction -->
+
+
+      <!-- services hiring-->
+
+      <div class="services">
+          <div class="handling-services">
+              <!--<h2 style="text-align: center;"> طلب خدمـة</h2>-->
+              <div class="service-form">
+                 <form method="POST">
+                   {% csrf_token %}
+                     <input type="text" name="name" placeholder="الإسـم">
+                     <input type="text" name="title" placeholder="وصف مختصر للخدمة"><br>
+                     <input type="number" name="phone_no" placeholder="رقم تواصل الواتس اب">
+                     <input type="number" name="budget" placeholder="الميزانية د.إ"><br>
+                     <input type="text" name="desc" placeholder="أوصف ما تطلبه.."><br>
+                     <input type="submit" value="نشـر" class="sbu"><br>
+                 </form>
+                 {% for message in messages %}
+ 
+                  <h2 style="color:rgb(30, 194, 30); text-align: center;">{{message}}</h2>
+    
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+
+
+       <!-- services hiring-->
+     
+
+
+
+       
+      <div class="line">
+        <div class="hr"></div>
+      </div>
+
+
+
+
+       <!-- displaying servcies-->
+
+        <div class="dis-services">
+            <div class="handling-ser">
+              <h2 class="hanlde">معرض الخـدمـات</h2>
+                <div class="all-serv">
+
+                  {% for serv in services%}
+                    <div class="serv">
+                        <h2><a href="{% url 'servicedetail' serv.id %}" style="color: black; text-decoration: none;">{{serv.title}}</a></h2>
+                        <small> وقت النشر :منذ {{serv.date_posted | timesince}} </small><br>
+                        <small>المزانية : {{serv.budget}} د.إ</small>
+                        <p>{{serv.desc | truncatewords:30 }}
+                        </p>
+                    </div>  
+                    {% endfor %}
+
+
+                   
+
+
+
+                </div>
+            </div>
+
+
+                        
+          <div class="pagination" style="text-align: center;margin-top:20px">
+            <span class="step-links">
+                {% if services.has_previous %}
+                    <a href="?page=1">&laquo; الصفحة الأولى</a>
+                    <a href="?page={{ services.previous_page_number }}" style="background-color: #146ef5;border-radius: 8px;color: white;padding: 4px 5px;">السـابق</a>
+                {% endif %}
+  
+                <span class="current">
+                    الصفحـة {{ services.number }} من {{ services.paginator.num_pages }}.
+                </span>
+  
+                {% if services.has_next %}
+                    <a href="?page={{ services.next_page_number }}" style="background-color: #146ef5;border-radius: 8px;color: white;padding: 4px 5px;">التـالي</a>
+                    <a href="?page={{ services.paginator.num_pages }}">الأخيرة &raquo;</a>
+                {% endif %}
+            </span>
+            </div>
+
+
+        </div>
+
+       <!-- displaying servcies-->
+
+
+
+  
+
+
+
+
+
+
+
+    <!--footer -->
+
+        <!--footer start-->
+        <div class="footer">
+          <!--<div class="container">-->
+              <div class="taking-footer">
+                 
+                  <div class="taking-links">
+                      <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                      <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                      <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                      <a href="{% url 'home' %}"> الرئيـسية</a>
+                  </div>
+                  <div class="log">
+                    <h1>وظـــيفة | Wazzifa</h1>
+                    <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                    <br><small>Developed by Ahmd Babiker</small>
+                </div>
+              </div>
+        
+      </div>
+  <!--footer end-->
+  <!--footer -->
+
+  
+
+
+
+
+    <!--js -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+   
+
+    <!-- js-->
+</body>
+</html>

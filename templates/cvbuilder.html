@@ -1,0 +1,310 @@
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>وظيـفة | إنشاء سيرة ذاتية </title>
+      <!-- Google Fonts -->
+      <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/sstyle.css' %}" />
+
+    
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+    <!-- link bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdYQwgqAAAAAP0i_28TeTMv_P_8CvR7g7RSaF4g"></script>
+
+    <style>
+        *{
+            font-size: 16px;
+            font-weight: 300;
+        }
+        input,textarea{
+            margin: 5px;
+            outline: none;
+            border: 1px solid lightgray;
+            padding: 4px;
+            border-radius: 5px;
+        }
+        h3{
+            margin-bottom: 20px;
+        }
+      @media print {
+        body {
+          width: 100%;
+          height: auto;
+        }
+        .page-break {
+        page-break-after: always;
+      }
+      }
+    </style>
+  </head>
+  <body dir="rtl"> 
+
+
+
+
+
+
+
+
+
+
+<div class="tit">
+    <h1>وظـــيفة | Wazzifa</h1>
+</div>
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- CV Form  -->
+    <div class="container" id="cv-form">
+
+        {% for me in messages %}
+        <p style="color: red;font-size:17px">{{me}}</p>
+        {% endfor %}
+
+        <form method="POST">
+            {% csrf_token %}
+        <div class="row my-2">
+            <div class="col-md-6">
+                <!-- first col -->
+                <div class="an" style="margin:12px 0">
+                <a href="{% url 'home' %}" style="text-decoration: none; color:rgb(148, 148, 148);">العودة إلى الصفحة الرئيسية</a>
+                </div>
+                <h3>البيانات الشخصية  </h3>
+                <div class="form-group">
+                    <label for="nameFeild">الإسم كاملا </label>
+                    <input type="text" class="form-control" id="nameFeild" name="fullname" placeholder="أدخل إسمك كاملا باللغة الإنجليزية ">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="eduFeild">  المسمى الوظيفي</label>
+                    <input type="text" class="form-control" id="eduFeild" name="wazzifa" placeholder=" مثال (محاسب , معلم , طبيب)">
+                </div>
+                <!-- Contact Number -->
+                <div class="form-group mt-2">
+                    <label for="contactFeild">رقم الهاتف </label>
+                    <input type="tel" class="form-control" name="phone" id="contactFeild" placeholder=" +97100000000">
+                </div>
+                <!-- Email ID -->
+                <div class="form-group mt-2">
+                    <label for="emailFeild">البريد الإلكتروني   </label>
+                    <input type="email" class="form-control" name="email" id="emailFeild" placeholder=" some@some.com">
+                </div>
+                <!-- Date of Birth -->
+                <div class="form-group mt-2">
+                    <label for="doblFeild">تاريخ الميلاد </label>
+                    <input type="date" name="dob" class="form-control" id="dobFeild" placeholder=" ">
+                </div>
+                <!-- Profile picture  -->
+                
+                <!-- Address -->
+                <div class="form-group mt-2">
+                    <label for="addressFeild"> العنوان  </label>
+                    <textarea type="text" name="address" class="form-control" id="addressFeild" placeholder="إسم المدينة .. " ></textarea>
+                </div>
+                <!-- Area of Interest -->
+                
+                            <!-- Important Links -->
+                <p class="text-secondary my-3"> روابط مهمة</p>
+                
+                <div class="form-group mt-2">
+                    <label for="linkdinFeild">  رابط الملف الشخصي على لنكدإن</label>
+                    <input type="text" name="linkedurl" class="form-control" id="linkedinFeild" placeholder=" ">
+                </div>
+               
+                
+            </div>
+
+
+            <div class="col-md-6 cvdata">
+
+                
+                <!-- second col -->
+                <h3>المعلومات المهنية والأكاديمية </h3>
+                <!-- Academic Qualifications -->
+
+
+
+                <div id="education-container" style="margin: 40px 0;">
+                    <h4>المؤهلات العملية</h4>
+                    <div class="education-form">
+                        <label for="education">المؤهل التعليمي</label>
+                       <select name="education" style="    word-wrap: normal;
+                       border: 1px solid lightgray;
+                       padding: 7px;
+                       border-radius: 8px;">
+                           <option value="A">لا يوجد</option>
+                           <option value="B">ثانوي</option>
+                           <option value="C">جامعي</option>
+                       </select><br>
+                       <input type="text" class="form-control" placeholder="إسم الجهة التعليي" name="edname">
+                        <label> تاريخ الإنتهاء:</label>
+                        <input type="date" name="ending_date">
+                       
+                    </div>
+                    <button type="button" class="btn btn-gray" style="    background-color: gray;
+                    color: white;" id="add-more-education">إضافة حقل تعليمي  </button>
+                </div>
+        
+               
+
+
+                
+                <div id="experience-container" style="margin: 40px 0;">
+                    <h4> الخبرات العملية</h4>
+
+                    <div class="experience-form">
+                        <label> إسم الشركة:</label>
+                        <input type="text" class="form-control" name="company_name">
+                        <label>المسمى الوظيفي:</label>
+                        <input type="text" class="form-control" name="position">
+                        <label>تاريخ البدء:</label>
+                        <input type="date" class="form-control" name="start_date">
+                        <label>تاريخ الإنتهاء :</label>
+                        <input type="date" class="form-control" name="end_date">
+                        <textarea name="description" placeholder="وصف وجيز لهذه الفترة"></textarea>
+                    </div>
+                    <button type="button" style="    background-color: gray;
+                color: white;" class="btn btn-gray" id="add-more-experience">إضافة حقل خبرة   </button>
+
+                </div>
+        
+                
+
+
+                <div id="certificate-container" style="margin: 40px 0;">
+                   <h4>الشهادات</h4>
+                    <div class="certificate-form">
+                       <input type="text" class="form-control" placeholder="شهادة في .." name="cetianem">
+                    </div>
+                    <button type="button" style="    background-color: gray;
+                    color: white;" class="btn btn-gray" id="add-more-certificate">  إضافة حقل شهادة</button>
+                </div>
+        
+               
+                
+
+
+
+
+            </div>
+
+
+
+        </div>
+        <div class="contaner text-center mt-3">
+
+
+            <div class="g-recaptcha text-center" data-sitekey="6LfNpPQpAAAAAPQuoszVed1etx5Ki6v4MQg9pKmw"></div>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+
+            <button  class="btn btn-dark btn-lg m-3" type="submit">أرسل الطلب</button><br>
+
+            
+            <small style="padding: 8px;">ملاحظة : سيتم التسليم خلال 3-4 أيام عن طريق البريد الإلكتروني و على تطبيق الوااتساب</small>
+        </div>
+    </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <script src="{% static 'js/sscript.js' %}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+
+    <script>
+        document.getElementById('add-more-experience').addEventListener('click', function() {
+            // Find the experience container
+            var container = document.getElementById('experience-container');
+
+            // Clone the first experience form
+            var newExperienceForm = container.children[0].cloneNode(true);
+
+            // Clear the input values in the cloned form
+            var inputs = newExperienceForm.querySelectorAll('input, textarea');
+            inputs.forEach(input => input.value = '');
+
+            // Append the new form to the container
+            container.appendChild(newExperienceForm);
+        });
+    </script>
+
+
+<script>
+    document.getElementById('add-more-certificate').addEventListener('click', function() {
+        // Find the experience container
+        var container = document.getElementById('certificate-container');
+
+        // Clone the first experience form
+        var newExperienceForm = container.children[0].cloneNode(true);
+
+        // Clear the input values in the cloned form
+        var inputs = newExperienceForm.querySelectorAll('input, textarea');
+        inputs.forEach(input => input.value = '');
+
+        // Append the new form to the container
+        container.appendChild(newExperienceForm);
+    });
+</script>
+
+
+
+<script>
+    document.getElementById('add-more-education').addEventListener('click', function() {
+        // Find the experience container
+        var container = document.getElementById('education-container');
+
+        // Clone the first experience form
+        var newExperienceForm = container.children[0].cloneNode(true);
+
+        // Clear the input values in the cloned form
+        var inputs = newExperienceForm.querySelectorAll('input, textarea');
+        inputs.forEach(input => input.value = '');
+
+        // Append the new form to the container
+        container.appendChild(newExperienceForm);
+    });
+</script>
+
+
+</body>
+</html>

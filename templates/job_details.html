@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+{% load static %}
+{% load social_share %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وظــيفة | {{vacancy.title}} </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdYQwgqAAAAAP0i_28TeTMv_P_8CvR7g7RSaF4g"></script>
+
+
+    <style>
+        *{
+          background-color: transparent;
+        }
+      </style>
+
+</head>
+<body dir="rtl" style="background-color: #FDFEFE;">
+
+    
+    <!--navbar section-->
+
+    <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="/">
+                <!--<h1>وظـــيفة | Wazzifa</h1>-->
+                <h1>وظـــيفة | Wazzifa</h1>
+
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    الرئيـسية
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li><a class="nav-link" href="{% url 'createcv' %}">السيرة الذاتية</a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a class="nav-link" href="{% url 'profile' request.user.id %}">{{user.username}} </a></li>
+                <li><a class="nav-link" href="{% url 'logout' %}"> خروج</a></li>
+                {% else %}
+                <li><a class="nav-link" href="{% url 'register' %}"> إنشاء حساب</a></li>
+                <li><a class="nav-link" href="{% url 'login' %}"> دخول</a></li>
+                {% endif %}
+
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       <!--navbar section-->
+
+
+
+
+
+
+
+       <!--job_details_section-->
+
+        <div class="details_section">
+            <div class="details_container">
+                <div class="taking_two-sides">
+                    <div class="job-infos">
+
+                        <div class="job-tit">
+                            <h2>{{vacancy.title}}</h2>
+                            <p class="tadg"> {{vacancy.tag}}</p>
+                            <div class="locationn" style="display: flex;margin:8px 0;">
+                                <div class="iconnn">
+                                <i class="fa-solid fa-location-dot" style="color: #3498DB;"></i>
+                                </div>
+                                <div class="locationn-title">
+                                    <p class="loc" style=color:#3498DB>{{vacancy.get_location_display}} </p>
+                                </div>
+                            </div>
+                            <p class="sidee"> نوع العمل  :  {{vacancy.get_contracttype_display}} </p>
+                            <p class="sidee">  الجهة : {{vacancy.get_jobtype_display}} </p>
+                           
+                            <p class="ppp">     
+                                {{vacancy.desc}}
+                            </p>
+                            <p class="apl">للتقديـم علـى الوظيـفة : </p>
+                            <p class="play">{{vacancy.applying}}</p>
+                            <div class="date-postedd" style="display: flex;margin: 10px 0;align-content: center;">
+                                <div class="date-icon">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <div class="date-textt">
+                                    <small>{{vacancy.date_posted|timesince}}</small>
+                                </div>
+                            </div>
+
+                           <form method="POST" action="{% url 'easy_apply' vacancy.id pro.id %}">
+                               {% csrf_token %}
+                               {% if request.user.is_authenticated %}
+                               <button type="submit" id="easyApplyButton">التقديم السريع</button>
+                               {% else %}
+                               <small style="color: gray;">لإستخدام ميزة التقديم السريع يجب إنشاء حساب</small>
+                               <br>
+                               {% endif %}
+                                
+                               <small style="display: inline-block;margin:10px 4px 0 0;color: #3498DB; "> {% post_to_whatsapp vacancy.id "مشـاركة الوظـيفة" %}</small> 
+                           </form>                      
+                         </div>
+                         
+
+                       
+
+                        
+
+
+
+                       
+
+
+
+                    </div>
+
+
+
+
+                   
+
+
+
+                    
+
+                    <div class="simi-jobs">
+                       <h2>وظائف مشابهة : <span style="color:gray ;">'{{vacancy.tag}}'</span></h2>
+                        {% for vac in vacancy_tag %}
+                        <div class="joob" style="box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);border-radius: 8px;">
+                            <h2> <a href="{% url 'job_detail' vac.slug %}"> {{vac.title}}</a></h2>
+                            <p  class="py"> {{vac.tag}}</p>
+                            <div class="llocation" style="display: flex;color: #3498DB;">
+                                <div class="icconn">
+                                <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="loocation-title">
+                                    <p>{{vac.get_location_display}}</p>
+                                </div>
+                            </div>
+                            <p class="pyp" style="margin: 9px 0;">
+                                {{vac.desc|truncatewords:10}}
+                            </p>
+                            <div class="datea-posted" style="display: flex;">
+                                <div class="datea-ico" style="color: #3498DB;">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <div class="datea-text">
+                                    <small style="color: #999;">{{vac.date_posted | timesince}}</small>
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+
+                    
+
+
+                        
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+       <!--job_details_section-->
+
+
+
+
+
+
+
+
+
+
+       <div id="loading-overlay" style="display: none;">
+        <div class="loader"></div>
+        <p>يتم الآن إرسال سيرتـك الذاتية ..</p>
+      </div>
+  
+
+
+
+
+
+
+    <!--footer -->
+
+        <!--footer start-->
+        <div class="footer">
+            <!--<div class="container">-->
+                <div class="taking-footer">
+                   
+                    <div class="taking-links">
+                        <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                        <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                        <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                        <a href="#">عننـا ؟ </a>
+                        <a href="{% url 'home' %}"> الرئيـسية</a>
+                    </div>
+                    <div class="log">
+                      <h1>وظـــيفة | Wazzifa</h1>
+                      <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                      <br><small>Developed by Ahmd Babiker</small>
+                  </div>
+                </div>
+          
+        </div>
+    <!--footer end-->
+    <!--footer -->
+
+      
+
+
+  
+
+
+
+
+    <!--js -->
+    
+   <script src="{% static 'js/script.js' %}"></script>
+   <script src='https://www.recaptcha.net/recaptcha/api.js?render=6LfNpPQpAAAAAPQuoszVed1etx5Ki6v4MQg9pKmw'></script>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                const token = await grecaptcha.execute('6LfNpPQpAAAAAPQuoszVed1etx5Ki6v4MQg9pKmw', { action: 'login' });
+                document.getElementById('id_recaptcha').value = token;
+                document.getElementById('loginForm').submit();
+            } catch (error) {
+                console.error('Error obtaining reCAPTCHA token:', error);
+                document.getElementById('non_field_errors').textContent = 'eCAPTCHA validation failed. Please try again.';
+            }
+        });
+    });
+</script>
+
+
+  <script>
+    document.getElementById("easyApplyButton").addEventListener("click", function() {
+      // Show the loading overlay
+      document.getElementById("loading-overlay").style.display = "flex";
+    });
+  </script>
+  
+  
+
+
+    <!-- js-->
+</body>
+</html>
+
+
+
+
+
+
+
+

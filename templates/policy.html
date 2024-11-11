@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccancies | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+
+   
+</head>
+<body dir="rtl" style="background-color: #F9F9FB;">
+
+    
+    <!--navbar section-->
+
+    <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="/">
+                <h1>وظـــيفة | Wazzifa</h1>
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    الرئيـسية
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li><a class="nav-link" href="{% url 'services' %}"> خدمـات</a></li>
+                <li><a class="nav-link" href="#">إيميلات</a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       <!--navbar section-->
+
+
+
+      <div class="policy">
+          <h1>سيـاسة الخصوصية</h1>
+          <div class="gathering">
+            <p>مرحبًا بك في Wazzifa.com نحن نولي أهمية كبيرة لحماية خصوصية مستخدمينا ونأخذ أمور الخصوصية بجدية. توضح هذه السياسة كيفية جمعنا واستخدامنا ومشاركتنا للمعلومات الشخصية.</p>
+            <div class="paragraph">
+                <h3>  المعلومات التي نقوم بجمعها  </h3>
+                <p> عند تسجيلك في الموقع أو استخدام خدماتنا، قد نجمع بعض المعلومات الشخصية مثل الاسم والبريد الإلكتروني والعنوان.
+                  نحن قد نستخدم تقنيات تتبع مثل ملفات تعريف الارتباط لتحليل اتجاهات الزوار وتحسين تجربة المستخدم. </p>
+            </div>
+
+            <div class="paragraph">
+              <h3>   كيفية استخدام المعلومات </h3>
+              <p>  نحن نستخدم المعلومات الشخصية التي نجمعها لتقديم الخدمات التي تطلبها وتخصيص تجربتك على الموقع.
+                قد نستخدم المعلومات للتواصل معك بشأن الخدمات والعروض التي قد تهمك.</p>
+          </div>
+
+          <div class="paragraph">
+            <h3> مشاركة المعلومات  </h3>
+            <p> نحن لن نبيع أو نؤجر أو نتاجر بمعلوماتك الشخصية إلى أطراف ثالثة دون موافقتك، إلا في الحالات التي تنص عليها القانون.
+              قد نشارك المعلومات مع شركاء الأعمال الذين يساعدوننا في تقديم الخدمات وتشغيل الموقع. </p>
+        </div>
+
+
+          <div class="paragraph">
+              <h3>  الأمان </h3>
+              <p>  نحن نتخذ إجراءات أمنية مناسبة لحماية معلوماتك الشخصية من الوصول غير المصرح به أو الاستخدام أو التعديل أو الإفشاء.</p>
+          </div>
+        
+          <div class="paragraph">
+            <h3>  حقوق الوصول والتصحيح </h3>
+            <p> لديك الحق في الوصول إلى المعلومات الشخصية التي نحتفظ بها وتصحيحها أو حذفها إذا كانت غير دقيقة. </p>
+        </div>
+      
+        <div class="paragraph">
+          <h3> تغييرات في سياسة الخصوصية  </h3>
+          <p> نحتفظ بالحق في تحديث هذه السياسة بشكل دوري، وسنقوم بنشر أي تغييرات على هذه الصفحة.
+            باستخدام هذا الموقع، فإنك توافق على جمع واستخدام ومشاركة المعلومات وفقًا لهذه السياسة. إذا كنت غير موافق على هذه السياسة، يُرجى عدم استخدام الموقع.
+            
+            إذا كان لديك أي أسئلة أو استفسارات حول سياسة الخصوصية، يُرجى الاتصال بنا عبر صفحة إتصل بنا. </p>
+         </div>
+
+
+          </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--footer -->
+
+        <!--footer start-->
+        <div class="footer">
+          <!--<div class="container">-->
+              <div class="taking-footer">
+                 
+                  <div class="taking-links">
+                      <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                      <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                      <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                      <a href="{% url 'home' %}"> الرئيـسية</a>
+                  </div>
+                  <div class="log">
+                    <h1>وظـــيفة | Wazzifa</h1>
+                    <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                    <br><small>Developed by Ahmd Babiker</small>
+                </div>
+              </div>
+        
+      </div>
+  <!--footer end-->
+  <!--footer -->
+
+  
+
+      
+
+
+  
+
+
+
+
+    <!--js -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- js-->
+</body>
+</html>

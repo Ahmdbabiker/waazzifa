@@ -1,0 +1,52 @@
+<!-- templates/register.html -->
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username" required><br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" required><br>
+    <label for="password1">Password:</label>
+    <input type="password" name="password1" required><br>
+    <label for="password2">Confirm Password:</label>
+    <input type="password" name="password2" required><br>
+    <label for="user_type">User Type:</label>
+    <select name="user_type" required>
+        <option value="customer">Customer</option>
+        <option value="seller">Seller</option>
+    </select><br>
+    
+    <div id="customer-fields" style="display:none;">
+        <label for="address">Address:</label>
+        <input type="text" name="address"><br>
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" name="phone_number"><br>
+    </div>
+    
+    <div id="seller-fields" style="display:none;">
+        <label for="business_name">Business Name:</label>
+        <input type="text" name="business_name"><br>
+        <label for="business_address">Business Address:</label>
+        <input type="text" name="business_address"><br>
+        <label for="activity">Activity:</label>
+        <select name="activity">
+            <option value="CLothes">CLothes</option>
+            <option value="Kitchen Stuff">Kitchen Stuff</option>
+            <option value="Home Stuff">Home Stuff</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Food & Drinks">Food & Drinks</option>
+        </select>
+    </div>
+    
+    <button type="submit">Register</button>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</form>
+
+<script>
+    document.querySelector('select[name="user_type"]').addEventListener('change', function() {
+        var userType = this.value;
+        document.getElementById('customer-fields').style.display = (userType === 'customer') ? 'block' : 'none';
+        document.getElementById('seller-fields').style.display = (userType === 'seller') ? 'block' : 'none';
+    });
+</script>

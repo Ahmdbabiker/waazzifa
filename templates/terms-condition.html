@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccancies | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+
+   
+</head>
+<body dir="rtl" style="background-color: #F9F9FB;">
+
+    
+    <!--navbar section-->
+
+    <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="/">
+                <h1>وظـــيفة | Wazzifa</h1>
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    الرئيـسية
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li><a class="nav-link" href="{% url 'services' %}"> خدمـات</a></li>
+                <li><a class="nav-link" href="#">إيميلات</a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       <!--navbar section-->
+
+
+
+
+
+
+      
+       <div class="policy">
+        <h1> الشـروط والأحكام</h1>
+        <div class="gathering">
+          مرحبًا بك في Wazzifa.com يُرجى قراءة الشروط والأحكام بعناية قبل استخدام الموقع. باستخدام الموقع، فإنك توافق على الالتزام بالشروط والأحكام التالية:
+          <div class="paragraph">
+              <h3>  الإستخدام الشخصي </h3>
+              <p>الموقع مخصص للاستخدام الشخصي فقط. يُمنع منعًا باتًا استخدام الموقع لأي أغراض تجارية أو غير شخصية دون الحصول على موافقة كتابية مسبقة.  </p>
+          </div>
+
+          <div class="paragraph">
+            <h3>   الملكية الفكرية</h3>
+            <p> جميع حقوق الملكية الفكرية المتعلقة بالموقع ومحتواه تنتمي إلى [اسم الشركة] أو الأطراف المختصة. يُمنع منعًا باتًا نسخ أو توزيع أو نقل أو إعادة إنتاج أو بيع أو استخدام أي من محتويات الموقع دون إذن كتابي. </p>
+        </div>
+
+        <div class="paragraph">
+            <h3>  السرية والأمان </h3>
+            <p> نحن نلتزم بحماية معلوماتك الشخصية ونتخذ إجراءات أمنية مناسبة لحمايتها ضد الوصول غير المصرح به أو الاستخدام أو التعديل أو الإفشاء. </p>
+        </div>
+
+        <div class="paragraph">
+            <h3> روابط إلى مواقع الطرف الثالث  </h3>
+            <p> يمكن أن يحتوي الموقع على روابط إلى مواقع الويب التابعة لأطراف ثالثة. نحن لسنا مسؤولين عن محتوى هذه المواقع أو ممارسات الخصوصية الخاصة بها. يجب على المستخدمين الاطلاع على سياسة الخصوصية والشروط والأحكام لكل موقع قبل الاستخدام. </p>
+        </div>
+
+        
+        <div class="paragraph">
+            <h3>  التعديلات </h3>
+            <p>  نحتفظ بالحق في تعديل الشروط والأحكام في أي وقت دون إشعار مسبق. يجب على المستخدمين مراجعة الشروط بشكل دوري للتأكد من أي تغييرات.</p>
+        </div>
+
+
+        <div class="paragraph">
+            <h3>  إنهاء الخدمة </h3>
+            <p> نحتفظ بالحق في إنهاء أو تعليق الوصول إلى الموقع أو جزء منه بدون إشعار مسبق. </p>
+        </div>
+
+        <div class="paragraph">
+          <h3>القانون الساري</h3>
+          <p>تخضع هذه الشروط والأحكام لقوانين [ الإمارات العربية المتحده/القانون الدولي] وجميع النزاعات تخضع للقضاء الحصري في [مكان القضاء].</p>
+          <p>باستخدام هذا الموقع، فإنك توافق على الالتزام بشروط وأحكام هذه الاتفاقية. إذا كنت غير موافق على هذه الشروط والأحكام، يُرجى عدم استخدام الموقع.</p>
+          إذا كان لديك أي أسئلة حول الشروط والأحكام، يُرجى الاتصال بنا عبر صفحة إتصل بنا.
+
+
+        </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--footer -->
+
+        <!--footer start-->
+        <div class="footer">
+          <!--<div class="container">-->
+              <div class="taking-footer">
+                 
+                  <div class="taking-links">
+                      <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                      <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                      <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                      <a href="{% url 'home' %}"> الرئيـسية</a>
+                  </div>
+                  <div class="log">
+                    <h1>وظـــيفة | Wazzifa</h1>
+                    <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                    <br><small>Developed by Ahmd Babiker</small>
+                </div>
+              </div>
+        
+      </div>
+  <!--footer end-->
+  <!--footer -->
+
+
+  
+
+
+
+
+    <!--js -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- js-->
+</body>
+</html>

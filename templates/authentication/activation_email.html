@@ -1,0 +1,8 @@
+{% autoescape off %}
+<p>Hi {{ user.username }},</p>
+<p>Thank you for registering. Please click the link below to verify your email and activate your account:</p>
+<p>Verify your email</p>
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+<p>If you didn't sign up for this account, you can ignore this email.</p>
+
+{% endautoescape %}

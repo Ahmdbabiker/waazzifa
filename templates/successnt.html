@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccancies | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+   
+</head>
+<body dir="rtl" style="background-color: #FDFEFE;">
+
+    
+    <!--navbar section-->
+
+    <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="/">
+                <!--<h1>وظـــيفة | Wazzifa</h1>-->
+                <h1>وظـــيفة | Wazzifa</h1>
+
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    الرئيـسية
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li><a class="nav-link" href="{% url 'createcv' %}">السيرة الذاتية</a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a class="nav-link" href="{% url 'profile' request.user.id %}">{{user.username}} </a></li>
+                <li><a class="nav-link" href="{% url 'logout' %}"> خروج</a></li>
+                {% else %}
+                <li><a class="nav-link" href="{% url 'register' %}"> إنشاء حساب</a></li>
+                <li><a class="nav-link" href="{% url 'login' %}"> دخول</a></li>
+                {% endif %}
+
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       <!--navbar section-->
+
+      
+
+
+        <div class="email_sent">
+            <div class="con">
+                <i class="fas fa-check" style="color: green;font-size: 40px;"></i><br>
+                <h2>  تم إرسال مستنداتك إلى صاحب العمل  </h2>
+                <small style="margin: 7px 0;display:inline-block"> نتمنى لك حظــاً موفقــاً</small><br>
+                <a href="{% url 'home' %}" style="display: inline-block;margin:8px 0;color: rgb(53, 53, 53);">عودة إلى الخلف</a>
+            </div>
+        </div>
+
+
+
+        <!--footer start-->
+        <div class="footer">
+            <!--<div class="container">-->
+                <div class="taking-footer">
+                   
+                    <div class="taking-links">
+                        <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                        <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                        <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                        <a href="{% url 'home' %}"> الرئيـسية</a>
+                    </div>
+                    <div class="log">
+                      <h1>وظـــيفة | Wazzifa</h1>
+                      <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                      <br><small>Developed by Ahmd Babiker</small>
+                  </div>
+                </div>
+          
+        </div>
+    <!--footer end-->
+    <!--footer -->
+
+  
+
+      
+
+
+  
+
+
+
+
+    <!--js -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- js-->
+</body>
+</html>

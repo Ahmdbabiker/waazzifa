@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+{% load static %}
+{% load social_share %}
+
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وظــيفة | {{vacancy.title}} </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+</head>
+  <body dir="rtl">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!--navbar section-->
+
+     <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="/">
+                <h1 style="color: rgb(90, 90, 90);">وظـــيفة | Wazzifa</h1>
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    الرئيـسية
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li><a class="nav-link" href="{% url 'services' %}"> خدمـات</a></li>
+                <li><a class="nav-link" href="#">إيميلات</a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       <!--navbar section-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="createcv">
+        <div class="contaainer">
+            <div class="title">
+                <h2>إنشىء سيرتك الذاتية المطابقة لنظام "ATS"</h2>
+                <small>مقابل 30 د.إ مع إمكانية التعديل عليها لاحقا </small>
+            </div>
+            <h3>البيـانات الشخصية</h3>
+            <div class="inputs">
+                
+                <input type="text" placeholder="الإسم الأول" name="">
+                <input type="text" placeholder="الإسم الاخير" name="">
+                <input type="email" placeholder="البريد الإلكتروني" name="">
+                <input type="number" placeholder="رقم الهاتف" name="">
+                <input type="text" placeholder="العنوان" name="">
+                <input type="text" placeholder="المدينة" name="">
+                <input type="date" placeholder="تاريخ الميلاد" name="">
+                <select>
+                    <option>ذكر</option>
+                    <option>انثى</option>
+                </select>
+                <input type="text" placeholder=" الجنسية" name="">
+                <input type="text" placeholder="تاريخ الميلاد" name="">
+                <input type="text" placeholder=" الحالة الاجتماعية" name="">
+                <input type="text" placeholder="  رابط حساب لنكدإن" name="">
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="createcv">
+        <div class="contaainer">
+            
+            <h3>  الخبرات العملية السابقة</h3>
+            <div class="inputs">
+                <label>نبذة مهنية </label>
+                <textarea placeholder="أكتب نبذه تعريفية مهنية مختصره عنك في ثلاثة أسطر.."></textarea><br>
+                <br>
+            </div>
+
+        </div>
+    </div>
+
+   
+    
+
+
+
+    <div class="container">
+      <form id="form">
+          <input type="text" name="input1" placeholder="Input 1">
+          <input type="text" name="input1" placeholder="Input 1">
+          <input type="text" name="input1" placeholder="Input 1">
+          <input type="text" name="input1" placeholder="Input 1">
+          <input type="text" name="input1" placeholder="Input 1">
+          <input type="text" name="input1" placeholder="Input 1">
+
+          <br>
+          <button type="button" id="addInput">Add Input</button>
+      </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    document.getElementById('addInput').addEventListener('click', function() {
+        var form = document.getElementById('form');
+        var inputs = form.getElementsByTagName('input');
+        var inputCount = inputs.length;
+
+        var newInput = document.createElement('input');
+        newInput.type = 'text';
+        newInput.name = 'input' + (inputCount + 3);
+        newInput.placeholder = 'Input ' + (inputCount + 3);
+        newInput.style.marginBottom = '10px';
+        newInput.style.padding = '8px';
+        newInput.style.border = '1px solid #ccc';
+        newInput.style.borderRadius = '4px';
+        newInput.style.boxSizing = 'border-box';
+
+        form.insertBefore(newInput, form.lastElementChild);
+    });
+</script>
+  </body>
+  </html>

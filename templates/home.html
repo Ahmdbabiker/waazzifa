@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccancies | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
+   
+</head>
+<body dir="rtl" style="background-color: #FDFEFE;">
+
+    
+    <!--navbar section-->
+
+    <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="/">
+                <!--<h1>وظـــيفة | Wazzifa</h1>-->
+                <h1>وظـــيفة | Wazzifa</h1>
+
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    الرئيـسية
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li><a class="nav-link" href="{% url 'createcv' %}">السيرة الذاتية</a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a class="nav-link" href="{% url 'profile' request.user.id %}">{{user.username}} </a></li>
+                <li><a class="nav-link" href="{% url 'logout' %}"> خروج</a></li>
+                {% else %}
+                <li><a class="nav-link" href="{% url 'register' %}"> إنشاء حساب</a></li>
+                <li><a class="nav-link" href="{% url 'login' %}"> دخول</a></li>
+                {% endif %}
+
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       <!--navbar section-->
+
+      
+
+     
+
+    <!-- search form -->
+
+      <div class="search-bar">
+              <div class="search-section">
+              <div class="search-head">
+                <p>وظـــيفة | Wazzifa</p>
+                 <p class="para"> إبحـث عـن آلاف الوظائف الشاغره<br> بمختـلف التخصصـات في جميـع أنحاء  دولـة الإمـارات  
+                <br>
+                </div>
+              <form method="POST">
+              {% csrf_token %}
+              <input type="text" name="job-search" 
+              placeholder="إبحــث عن وظيفة .." class="job" style="border: 1px solid rgb(233, 233, 233);
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);border-radius: 8px;background-color: #ECF0F1;">
+                <br>
+                <select id="fruit-select"  name="jobtype" style="
+                box-shadow:0 2px 6px rgba(0, 0, 0, 0.15);border-radius:8px;border:1px solid rgb(233, 233, 233);">
+                  <option selected value="">نوع العمـل</option>
+                  <option value="part">دوام جزئي</option>
+                  <option value="full">دوام كـامل</option>
+                  <option value="remot">عمل عن بعـد</option>
+                </select>
+
+                <select id="select" name="side"  style="background-color: white;box-shadow:0 2px 6px rgba(0, 0, 0, 0.15);border-radius:8px;border:1px solid rgb(233, 233, 233)";>
+                  <option selected value="">القطاع</option>
+                  <option value="spec">قطاع خاص</option>
+                  <option value="gover">قطاع حكومي</option>
+                </select>
+              
+              
+                <select id="fruit-select"  name="location" style="background-color: white;box-shadow:0 2px 6px rgba(0, 0, 0, 0.15);border-radius:8px;border:1px solid rgb(233, 233, 233)";>
+                    <option selected value="">المنطـقة</option>
+                    
+                    <option value="dubai">دبي</option>
+                    <option value="abudhabi">أبوظبي</option>
+                    <option value="sharjah">الشارقة</option>
+                    <option value="fujairah">الفجيرة</option>
+                    <option value="rak">رأس الخيمة</option>
+                    <option value="ajman">عجمان</option>
+                </select>
+                  <br>
+
+
+                  <input type="submit" value="إبحـث" class="sub" style="border-radius: 8px;">
+                
+
+                </form>
+                
+          </div>
+      </div>
+      
+      <!--search form -->
+
+    <!--serach by tag-->
+
+      <div class="tag-search">
+          <div class="containner">
+              <div class="seach-title">
+                  <p> إبحــث بالمجال : </p>
+              </div>    
+              <div class="tags">
+                <a href="{% url 'home' %}"  style="background-color: #3498DB;color: white;
+                border-radius:8px;box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);">الكـل</a>
+                  {% for tag in tags %}
+                  <a href="{% url 'tags_search' tag.id %}"
+                   style="background-color: #3498DB;color: white;
+                   border-radius:8px;box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);">  {{tag.name}}</a> 
+                  {% endfor %}
+                 
+              </div>
+          </div>
+      </div>
+    <!--serach by tag-->
+
+
+    <!-- jobs display section-->
+
+    <div class="jobs-display">
+        <div class="cont">
+
+
+          <div class="seached">
+            {% if dis%}
+              <h3 style="margin: 10px;">نتائج البحث لـ '{{searched}}'</h3>
+            {% endif %}
+          </div>
+            <div class="all-jobs">
+
+              
+                {% if job_search %}
+                {% for job in job_search %}
+                
+                <div class="job" style="box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);">
+                    <h2> <a href="{% url 'job_detail' job.slug %}">{{job.title}}</a>  </h2>
+                    <p  class="p"> {{job.tag}}</p>
+                    <div class="location">
+                        <div class="iconn">
+                        <i class="fa-solid fa-location-dot" style="color: #3498DB;"></i>
+                        </div>
+                        <div class="location-title">
+                            <small style="color: #7F8C8D;">{{job.get_location_display}}</small>
+                        </div>
+                    </div>
+                    <small style="color: #7F8C8D;">{{job.get_contracttype_display}}</small>
+                    <p class="pp"> {{job.desc | truncatewords:10}}
+                    
+                    </small> </p>
+                    <div class="date-posted">
+                        <div class="date-ico">
+                            <i class="fa-regular fa-clock" class="fa-solid fa-location-dot" style="color: #3498DB;"></i>
+                        </div>
+                        <div class="date-text">{{job.date_posted|timesince}}</div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <h3>لم نتحصل على نتائج </h3>
+                {% endif %}
+              
+                
+              
+
+
+            </div>
+
+
+
+                    
+          <div class="pagination" style="text-align: center;margin-top:20px">
+          <span class="step-links">
+              {% if job_search.has_previous %}
+                  <a href="?page=1">&laquo; الصفحة الأولى</a>
+                  <a href="?page={{ job_search.previous_page_number }}" style="background-color: #146ef5;border-radius: 8px;color: white;padding: 4px 5px;">السـابق</a>
+              {% endif %}
+
+              <span class="current">
+                  الصفحـة {{ job_search.number }} من {{ job_search.paginator.num_pages }}.
+              </span>
+
+              {% if job_search.has_next %}
+                  <a href="?page={{ job_search.next_page_number }}" style="    background-color: gray;
+                  border-radius: 8px;
+                  color: white;
+                  
+                  padding: 4px 5px">التـالي</a>
+                  <a href="?page={{ job_search.paginator.num_pages }}">الأخيرة &raquo;</a>
+              {% endif %}
+          </span>
+          </div>
+
+
+
+        </div>
+    </div>
+    <!-- jobs display section-->
+
+
+
+
+    <!--footer -->
+
+        <!--footer start-->
+        <div class="footer">
+            <!--<div class="container">-->
+                <div class="taking-footer">
+                   
+                    <div class="taking-links">
+                        <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                        <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                        <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                        <a href="{% url 'home' %}"> الرئيـسية</a>
+                    </div>
+                    <div class="log">
+                      <h1>وظـــيفة | Wazzifa</h1>
+                      <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                      <br><small>Developed by Ahmd Babiker</small>
+                  </div>
+                </div>
+          
+        </div>
+    <!--footer end-->
+    <!--footer -->
+
+  
+
+      
+
+
+  
+
+
+
+
+    <!--js -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- js-->
+</body>
+</html>

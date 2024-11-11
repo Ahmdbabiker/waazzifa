@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccancies | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Markazi+Text:wght@400..700&display=swap" rel="stylesheet">
+
+<style>
+  *{
+    background-color: transparent;
+  }
+</style>
+</head>
+<body dir="rtl" style="background-color: #F9F9FB;">
+
+    
+    <!--navbar section-->
+
+    <header id="nav-menu" aria-label="navigation bar">
+        <div class="container">
+          <div class="nav-start">
+            <a class="logo" href="/">
+                <h1 style="color: rgb(90, 90, 90);font-size: 40px;">وظـــيفة | Wazzifa</h1>
+            </a>
+            <nav class="menu">
+              <ul class="menu-bar">
+                <li>
+                  <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="browse">
+                    الرئيـسية
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+    
+                </li>
+                <li>
+                  <but  ton class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true" aria-expanded="false" aria-label="discover">
+                    نصـائح
+                    <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                  </button>
+  
+                </li>
+                <li><a class="nav-link" href="{% url 'services' %}">خدمات </a></li>
+                <li><a class="nav-link" href="#"> الإيميلات </a></li>
+                <li><a class="nav-link" href="{% url 'contactus' %}">تواصل معـنا</a></li>
+                <li><a class="nav-link uniqe" href="#" style="background-color : #146ef5;color:white;padding:5px"> نشــر  وظيـفة</a></li>
+
+              </ul>
+            </nav>
+          </div>
+      
+          <div class="nav-end">
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+       <!--navbar section-->
+
+
+      <div class="emails">
+          <div class="containers">
+              <div class="holding-cates" style=" height: 400px;
+              display: flex;
+              justify-content:space-evenly;
+              flex-wrap: wrap;
+              gap: 18px;
+              align-content: center;">
+                
+                {% for email in com_emails %}
+                <div class="email" style="width: 23%;box-shadow:  0 2px 6px rgba(0, 0, 0, 0.15);
+                padding: 9px;display: flex;align-items: center;background-color: white;border-radius: 8px;">  
+                    <div class="name" style="width: 70%;">
+                        <h2><a  style="background-color: white;text-decoration: none;" href="{% url 'emaildetails' email.id %}">{{email.name}}</a></h2>
+                      </div>
+                      <div class="iconn" style="width: 20%;">
+                        <i class="fa-regular fa-hospital" style="font-size: 60px;color:lightgray"></i>
+                      </div>
+                  </div>
+
+                  {% endfor %}
+
+
+              </div>
+          </div>
+      </div>
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--footer -->
+
+        <!--footer start-->
+        <div class="footer">
+          <!--<div class="container">-->
+              <div class="taking-footer">
+                 
+                  <div class="taking-links">
+                      <a href="{% url 'policy' %}">سياسة الخصوصية</a>
+                      <a href="{% url 'contactus' %}">تواصل معنـا </a>
+                      <a href="{% url 'terms' %}">الشروط والأحكام </a>
+                      <a href="{% url 'home' %}"> الرئيـسية</a>
+                  </div>
+                  <div class="log">
+                    <h1>وظـــيفة | Wazzifa</h1>
+                    <small>All Rights Reserved 2024<i class="fa-regular fa-copyright"></i></small>
+                    <br><small>Developed by Ahmd Babiker</small>
+                </div>
+              </div>
+        
+      </div>
+  <!--footer end-->
+  <!--footer -->
+
+  
+
+
+
+
+    <!--js -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- js-->
+</body>
+</html>
